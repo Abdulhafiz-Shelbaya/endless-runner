@@ -130,17 +130,22 @@ public class PlayerControll : MonoBehaviour
             StartCoroutine(Slide());
             
         }
+        if (transform.position != targetPosition)
+        {
+            Vector3 diff = targetPosition - transform.position;
+            Vector3 moveDir = diff.normalized * 30 * Time.deltaTime;
+            if (moveDir.sqrMagnitude < diff.magnitude)
+                controller.Move(moveDir);
+            else
+                controller.Move(diff);
+        }
 
+        controller.Move(direction* Time.deltaTime);// telling player to move in direction * time.deltatime( whcih makes the player go by frames and make it smoother)
         
     }
 
 
-    private void FixedUpdate()
-    {
-         if(!PlayerManager.isGameStarted)
-           return;
-        controller.Move(direction* Time.fixedDeltaTime);// telling player to move in direction * time.deltatime( whcih makes the player go by frames and make it smoother)
-    }
+   
     //jumping function
     public  IEnumerator Jump()
     {
