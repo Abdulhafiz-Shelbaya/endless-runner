@@ -28,10 +28,23 @@ public class ShopManager : MonoBehaviour
     {
         CharacterModels[currentCharacterIndex].SetActive(false);
         currentCharacterIndex ++;
-        if(currentCharacterIndex > 2)
+        if(currentCharacterIndex == CharacterModels.Length)
         {
             currentCharacterIndex = 0;
         }
-        CharacterModels[currentCharacterIndex].
+        CharacterModels[currentCharacterIndex].SetActive(true);
+        PlayerPrefs.SetInt("SelectedChar", currentCharacterIndex);
+    }
+
+    public void ChangePrevoues()
+    {
+        CharacterModels[currentCharacterIndex].SetActive(false);
+        currentCharacterIndex --;
+        if(currentCharacterIndex == -1)
+        {
+            currentCharacterIndex = CharacterModels.Length -1;
+        }
+        CharacterModels[currentCharacterIndex].SetActive(true);
+        PlayerPrefs.SetInt("SelectedChar", currentCharacterIndex);
     }
 }
