@@ -48,4 +48,9 @@ public class ScoreManager : MonoBehaviour
         Score.text = "Score: " + Mathf.Round(scoreCount);
         highScore.text = "highScore: " + Mathf.Round(highScoreCount);
     }
+
+
+    //SCORE MULTIPLIER POWERUP
+
+
 }
