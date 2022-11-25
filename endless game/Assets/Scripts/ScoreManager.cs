@@ -13,6 +13,8 @@ public class ScoreManager : MonoBehaviour
     public float pointsPerSec;
 
     public bool isIncreasing;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +29,11 @@ public class ScoreManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(PointsMultiplier.isMultipling == true)
+        {
+            StartCoroutine(DoublePoints());
+            
+        }
         if(PlayerManager.isGameStarted)
         {
             isIncreasing = true;
@@ -49,8 +56,11 @@ public class ScoreManager : MonoBehaviour
         highScore.text = "highScore: " + Mathf.Round(highScoreCount);
     }
 
-
-    //SCORE MULTIPLIER POWERUP
-
-
+    public IEnumerator DoublePoints()
+    {
+        pointsPerSec = 8f;
+        yield return new WaitForSeconds(5f);
+        pointsPerSec = 5f;
+        PointsMultiplier.isMultipling = false;
+    }
 }

@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerUpScript : MonoBehaviour
+public class Invinsability : MonoBehaviour
 {
-    public GameObject PointsMultiplier;
+    public GameObject InvinsabilityObj;
+    public static bool isInvinsable;
     // Start is called before the first frame update
     void Start()
     {
-
+        isInvinsable = false;
     }
 
     // Update is called once per frame
@@ -16,14 +17,13 @@ public class PowerUpScript : MonoBehaviour
     {
         
     }
-
+    
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "player")
+        if(other.tag == "Player")
         {
-            Destroy(PointsMultiplier);
-            
-
+            isInvinsable = true;
+            Destroy(InvinsabilityObj);
         }
         
     }
